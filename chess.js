@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2019, Matt Michel (@ninjaPixel)
  * Copyright (c) 2018, Jeff Hlywa (jhlywa@gmail.com)
  * All rights reserved.
  *
@@ -1306,19 +1307,19 @@ var Chess = function(fen) {
       return moves;
     },
 
-    in_check: function() {
+    inCheck: function() {
       return in_check();
     },
 
-    in_checkmate: function() {
+    inCheckmate: function() {
       return in_checkmate();
     },
 
-    in_stalemate: function() {
+    inStalemate: function() {
       return in_stalemate();
     },
 
-    in_draw: function() {
+    inDraw: function() {
       return (
         half_moves >= 100 ||
         in_stalemate() ||
@@ -1327,15 +1328,15 @@ var Chess = function(fen) {
       );
     },
 
-    insufficient_material: function() {
+    insufficientMaterial: function() {
       return insufficient_material();
     },
 
-    in_threefold_repetition: function() {
+    inThreefoldRepetition: function() {
       return in_threefold_repetition();
     },
 
-    game_over: function() {
+    gameOver: function() {
       return (
         half_moves >= 100 ||
         in_checkmate() ||
@@ -1345,7 +1346,7 @@ var Chess = function(fen) {
       );
     },
 
-    validate_fen: function(fen) {
+    validateFen: function(fen) {
       return validate_fen(fen);
     },
 
@@ -1469,7 +1470,7 @@ var Chess = function(fen) {
       return result.join('');
     },
 
-    load_pgn: function(pgn, options) {
+    loadPgn: function(pgn, options) {
       // allow the user to specify the sloppy move parser to work around over
       // disambiguation bugs in Fritz and Chessbase
       var sloppy =
@@ -1488,7 +1489,7 @@ var Chess = function(fen) {
         return false;
       }
 
-      function parse_pgn_header(header, options) {
+      function parsePgnHeader(header, options) {
         var newline_char =
           typeof options === 'object' &&
           typeof options.newline_char === 'string'
@@ -1536,7 +1537,7 @@ var Chess = function(fen) {
       reset();
 
       /* parse PGN header */
-      var headers = parse_pgn_header(header_string, options);
+      var headers = parsePgnHeader(header_string, options);
       for (var key in headers) {
         set_header([key, headers[key]]);
       }
@@ -1704,7 +1705,7 @@ var Chess = function(fen) {
       return perft(depth);
     },
 
-    square_color: function(square) {
+    squareColor: function(square) {
       if (square in SQUARES) {
         var sq_0x88 = SQUARES[square];
         return (rank(sq_0x88) + file(sq_0x88)) % 2 === 0 ? 'light' : 'dark';

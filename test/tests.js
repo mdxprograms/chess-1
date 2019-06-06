@@ -102,7 +102,7 @@ describe("Checkmate", function() {
     chess.load(checkmate);
 
     it(checkmate, function() {
-      assert(chess.in_checkmate());
+      assert(chess.inCheckmate());
     });
   });
 
@@ -122,7 +122,7 @@ describe("Stalemate", function() {
     chess.load(stalemate);
 
     it(stalemate, function() {
-      assert(chess.in_stalemate())
+      assert(chess.inStalemate())
     });
 
   });
@@ -150,9 +150,9 @@ describe("Insufficient Material", function() {
 
     it(position.fen, function() {
       if (position.draw) {
-        assert(chess.insufficient_material() && chess.in_draw());
+        assert(chess.insufficientMaterial() && chess.inDraw());
       } else {
-        assert(!chess.insufficient_material() && !chess.in_draw());
+        assert(!chess.insufficientMaterial() && !chess.inDraw());
       }
     });
 
@@ -180,14 +180,14 @@ describe("Threefold Repetition", function() {
 
       var passed = true;
       for (var j = 0; j < position.moves.length; j++) {
-        if (chess.in_threefold_repetition()) {
+        if (chess.inThreefoldRepetition()) {
           passed = false;
           break;
         }
         chess.move(position.moves[j]);
       }
 
-      assert(passed && chess.in_threefold_repetition() && chess.in_draw());
+      assert(passed && chess.inThreefoldRepetition() && chess.inDraw());
 
     });
 
@@ -752,7 +752,7 @@ describe("Load PGN", function() {
     newline_chars.forEach(function(newline, j) {
       it(i + String.fromCharCode(97 + j), function() {
         var sloppy = t.sloppy || false;
-        var result = chess.load_pgn(t.pgn.join(newline), {sloppy: sloppy,
+        var result = chess.loadPgn(t.pgn.join(newline), {sloppy: sloppy,
                                                           newline_char: newline});
         var should_pass = t.expect;
 
@@ -804,10 +804,10 @@ describe("Load PGN", function() {
          '32. Qe5 Qe8 33. a4 Qd8 34. R1f2 Qe8 35. R2f3 Qd8 36. Bd3 Qe8\n' +
          '37. Qe4 Nf6 38. Rxf6 gxf6 39. Rxf6 Kg8 40. Bc4 Kh8 41. Qf4 1-0\n';
 
-    var result = chess.load_pgn(pgn, { newline_char: '\r?\n' });
+    var result = chess.loadPgn(pgn, { newline_char: '\r?\n' });
     assert(result);
 
-    assert(chess.load_pgn(pgn));
+    assert(chess.loadPgn(pgn));
     assert(chess.pgn().match(/^\[\[/) === null);
   });
 
@@ -1018,7 +1018,7 @@ describe("Validate FEN", function() {
   positions.forEach(function(position) {
 
     it(position.fen + ' (valid: ' + (position.error_number  == 0) + ')', function() {
-      var result = chess.validate_fen(position.fen);
+      var result = chess.validateFen(position.fen);
       assert(result.error_number == position.error_number, result.error_number);
     });
 
@@ -1289,18 +1289,18 @@ describe('Regression Tests', function() {
     assert(chess.moves().join(' ') == 'Kd2 Ke2 Kxf2 Kf1 Kd1');
   });
 
-  it('Github Issue #85 (white) - SetUp and FEN should be accepted in load_pgn', function() {
+  it('Github Issue #85 (white) - SetUp and FEN should be accepted in loadPgn', function() {
        var chess = new Chess();
        var pgn = ['[SetUp "1"]', '[FEN "7k/5K2/4R3/8/8/8/8/8 w KQkq - 0 1"]', "", '1. Rh6#'];
-       var result = chess.load_pgn(pgn.join("\n"));
+       var result = chess.loadPgn(pgn.join("\n"));
        assert(result);
        assert(chess.fen() === '7k/5K2/7R/8/8/8/8/8 b KQkq - 1 1');
   });
 
-  it('Github Issue #85 (black) - SetUp and FEN should be accepted in load_pgn', function() {
+  it('Github Issue #85 (black) - SetUp and FEN should be accepted in loadPgn', function() {
        var chess = new Chess();
        var pgn = ['[SetUp "1"]', '[FEN "r4r1k/1p4b1/3p3p/5qp1/1RP5/6P1/3NP3/2Q2RKB b KQkq - 0 1"]', "", '1. ... Qc5+'];
-       var result = chess.load_pgn(pgn.join("\n"));
+       var result = chess.loadPgn(pgn.join("\n"));
        assert(result);
        assert(chess.fen() === 'r4r1k/1p4b1/3p3p/2q3p1/1RP5/6P1/3NP3/2Q2RKB w KQkq - 1 2');
   });
@@ -1321,7 +1321,7 @@ describe('Regression Tests', function() {
     assert(result.match(/(45\. \.\.\. Rf1\+)$/));
   })
 
-  it('Github Issue #129 load_pgn() should not clear headers if PGN contains SetUp and FEN tags', function () {
+  it('Github Issue #129 loadPgn() should not clear headers if PGN contains SetUp and FEN tags', function () {
     var pgn = [
       '[Event "Test Olympiad"]',
       '[Site "Earth"]',
@@ -1337,7 +1337,7 @@ describe('Regression Tests', function() {
     ];
 
     var chess = new Chess();
-    var result = chess.load_pgn(pgn.join('\n'));
+    var result = chess.loadPgn(pgn.join('\n'));
     var expected = {
       Event: 'Test Olympiad',
       Site: 'Earth',
@@ -1368,7 +1368,7 @@ describe('Regression Tests', function() {
     ];
 
     var chess = new Chess();
-    var result = chess.load_pgn(pgn.join('\n'));
+    var result = chess.loadPgn(pgn.join('\n'));
     chess.clear();
     var expected = {
       FEN: '8/8/8/8/8/8/8/8 w - - 0 1',
