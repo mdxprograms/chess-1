@@ -4,6 +4,7 @@ if (typeof require != "undefined") {
 }
 
 var assert = chai.assert;
+const expect= chai.expect;
 
 describe("Perft", function() {
   var perfts = [
@@ -86,8 +87,6 @@ describe("Single Square Move Generation", function() {
 });
 
 
-
-
 describe("Checkmate", function() {
 
   var chess = new Chess();
@@ -107,7 +106,6 @@ describe("Checkmate", function() {
   });
 
 });
-
 
 
 describe("Stalemate", function() {
@@ -1025,6 +1023,7 @@ describe("Validate FEN", function() {
   });
 });
 
+
 describe("History", function() {
 
   var chess = new Chess();
@@ -1164,6 +1163,7 @@ describe("History", function() {
   });
 });
 
+
 describe('Board Tests', function() {
 
   var tests = [
@@ -1274,6 +1274,7 @@ describe('Board Tests', function() {
   })
 });
 
+
 describe('Regression Tests', function() {
   it('Github Issue #32 - castling flag reappearing', function() {
     var chess = new Chess('b3k2r/5p2/4p3/1p5p/6p1/2PR2P1/BP3qNP/6QK b k - 2 28');
@@ -1377,3 +1378,22 @@ describe('Regression Tests', function() {
     assert.deepEqual(chess.header(), expected);
   })
 });
+
+
+describe('Verbose move information', function(){
+  it('The checkmate flag exists', function(){
+    const chess = new Chess('7k/PQ6/8/8/8/8/8/K7 w - - 0 2');
+    const moves = chess.moves({ square: 'a7',verbose:true});
+
+    // https://lichess.org/editor/7k/PQ6/8/8/8/8/8/K7_w_-_-
+    // pawn can move forward and promote. If it promotes to q or r it will be checkmate
+    const queenPromotion = moves.find(move=>move.promotion==='q');
+    expect(queenPromotion.checkMate).to.equal(true);
+    const rookPromotion = moves.find(move=>move.promotion==='r');
+    expect(rookPromotion.checkMate).to.equal(true);
+    const bishopPromotion = moves.find(move=>move.promotion==='b');
+    expect(bishopPromotion.checkMate).to.equal(false);
+    const knightPromotion = moves.find(move=>move.promotion==='n');
+    expect(knightPromotion.checkMate).to.equal(false);
+  });
+})

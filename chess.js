@@ -1179,7 +1179,8 @@ var Chess = function(fen) {
   /* pretty = external move object */
   function make_pretty(ugly_move) {
     var move = clone(ugly_move);
-    move.san = move_to_san(move, false);
+    const san = move_to_san(move, false);
+    move.san = san;
     move.to = algebraic(move.to);
     move.from = algebraic(move.from);
 
@@ -1191,6 +1192,12 @@ var Chess = function(fen) {
       }
     }
     move.flags = flags;
+
+    const finalSanChar=san.charAt(san.length-1)
+    const checkMate = finalSanChar === '#'? true: false;
+    const check = finalSanChar === '+'? true: false;
+    move.check = check;
+    move.checkMate = checkMate;
 
     return move;
   }
