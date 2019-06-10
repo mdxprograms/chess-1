@@ -254,7 +254,7 @@ var Chess = function(fen) {
 
   /* TODO: this function is pretty much crap - it validates structure but
    * completely ignores content (e.g. doesn't verify that each side has a king)
-   * ... we should rewrite this, and ditch the silly error_number field while
+   * ... we should rewrite this, and ditch the silly errorNumber field while
    * we're at it
    */
   function validate_fen(fen) {
@@ -276,38 +276,38 @@ var Chess = function(fen) {
     /* 1st criterion: 6 space-seperated fields? */
     var tokens = fen.split(/\s+/);
     if (tokens.length !== 6) {
-      return { valid: false, error_number: 1, error: errors[1] };
+      return { valid: false, errorNumber: 1, error: errors[1] };
     }
 
     /* 2nd criterion: move number field is a integer value > 0? */
     if (isNaN(tokens[5]) || parseInt(tokens[5], 10) <= 0) {
-      return { valid: false, error_number: 2, error: errors[2] };
+      return { valid: false, errorNumber: 2, error: errors[2] };
     }
 
     /* 3rd criterion: half move counter is an integer >= 0? */
     if (isNaN(tokens[4]) || parseInt(tokens[4], 10) < 0) {
-      return { valid: false, error_number: 3, error: errors[3] };
+      return { valid: false, errorNumber: 3, error: errors[3] };
     }
 
     /* 4th criterion: 4th field is a valid e.p.-string? */
     if (!/^(-|[abcdefgh][36])$/.test(tokens[3])) {
-      return { valid: false, error_number: 4, error: errors[4] };
+      return { valid: false, errorNumber: 4, error: errors[4] };
     }
 
     /* 5th criterion: 3th field is a valid castle-string? */
     if (!/^(KQ?k?q?|Qk?q?|kq?|q|-)$/.test(tokens[2])) {
-      return { valid: false, error_number: 5, error: errors[5] };
+      return { valid: false, errorNumber: 5, error: errors[5] };
     }
 
     /* 6th criterion: 2nd field is "w" (white) or "b" (black)? */
     if (!/^(w|b)$/.test(tokens[1])) {
-      return { valid: false, error_number: 6, error: errors[6] };
+      return { valid: false, errorNumber: 6, error: errors[6] };
     }
 
     /* 7th criterion: 1st field contains 8 rows? */
     var rows = tokens[0].split('/');
     if (rows.length !== 8) {
-      return { valid: false, error_number: 7, error: errors[7] };
+      return { valid: false, errorNumber: 7, error: errors[7] };
     }
 
     /* 8th criterion: every row is valid? */
@@ -319,20 +319,20 @@ var Chess = function(fen) {
       for (var k = 0; k < rows[i].length; k++) {
         if (!isNaN(rows[i][k])) {
           if (previous_was_number) {
-            return { valid: false, error_number: 8, error: errors[8] };
+            return { valid: false, errorNumber: 8, error: errors[8] };
           }
           sum_fields += parseInt(rows[i][k], 10);
           previous_was_number = true;
         } else {
           if (!/^[prnbqkPRNBQK]$/.test(rows[i][k])) {
-            return { valid: false, error_number: 9, error: errors[9] };
+            return { valid: false, errorNumber: 9, error: errors[9] };
           }
           sum_fields += 1;
           previous_was_number = false;
         }
       }
       if (sum_fields !== 8) {
-        return { valid: false, error_number: 10, error: errors[10] };
+        return { valid: false, errorNumber: 10, error: errors[10] };
       }
     }
 
@@ -340,11 +340,11 @@ var Chess = function(fen) {
       (tokens[3][1] == '3' && tokens[1] == 'w') ||
       (tokens[3][1] == '6' && tokens[1] == 'b')
     ) {
-      return { valid: false, error_number: 11, error: errors[11] };
+      return { valid: false, errorNumber: 11, error: errors[11] };
     }
 
     /* everything's okay! */
-    return { valid: true, error_number: 0, error: errors[0] };
+    return { valid: true, errorNumber: 0, error: errors[0] };
   }
 
   function generate_fen() {
@@ -1383,15 +1383,15 @@ var Chess = function(fen) {
 
     pgn: function(options) {
       /* using the specification from http://www.chessclub.com/help/PGN-spec
-       * example for html usage: .pgn({ max_width: 72, newline_char: "<br />" })
+       * example for html usage: .pgn({ maxWidth: 72, newlineChar: "<br />" })
        */
       var newline =
-        typeof options === 'object' && typeof options.newline_char === 'string'
-          ? options.newline_char
+        typeof options === 'object' && typeof options.newlineChar === 'string'
+          ? options.newlineChar
           : '\n';
-      var max_width =
-        typeof options === 'object' && typeof options.max_width === 'number'
-          ? options.max_width
+      var maxWidth =
+        typeof options === 'object' && typeof options.maxWidth === 'number'
+          ? options.maxWidth
           : 0;
       var result = [];
       var header_exists = false;
@@ -1450,15 +1450,15 @@ var Chess = function(fen) {
       /* history should be back to what is was before we started generating PGN,
        * so join together moves
        */
-      if (max_width === 0) {
+      if (maxWidth === 0) {
         return result.join('') + moves.join(' ');
       }
 
-      /* wrap the PGN output at max_width */
+      /* wrap the PGN output at maxWidth */
       var current_width = 0;
       for (var i = 0; i < moves.length; i++) {
-        /* if the current move will push past max_width */
-        if (current_width + moves[i].length > max_width && i !== 0) {
+        /* if the current move will push past maxWidth */
+        if (current_width + moves[i].length > maxWidth && i !== 0) {
           /* don't end the line with whitespace */
           if (result[result.length - 1] === ' ') {
             result.pop();
@@ -1497,13 +1497,13 @@ var Chess = function(fen) {
       }
 
       function parsePgnHeader(header, options) {
-        var newline_char =
+        var newlineChar =
           typeof options === 'object' &&
-          typeof options.newline_char === 'string'
-            ? options.newline_char
+          typeof options.newlineChar === 'string'
+            ? options.newlineChar
             : '\r?\n';
         var header_obj = {};
-        var headers = header.split(new RegExp(mask(newline_char)));
+        var headers = header.split(new RegExp(mask(newlineChar)));
         var key = '';
         var value = '';
 
@@ -1518,20 +1518,20 @@ var Chess = function(fen) {
         return header_obj;
       }
 
-      var newline_char =
-        typeof options === 'object' && typeof options.newline_char === 'string'
-          ? options.newline_char
+      var newlineChar =
+        typeof options === 'object' && typeof options.newlineChar === 'string'
+          ? options.newlineChar
           : '\r?\n';
 
       // RegExp to split header. Takes advantage of the fact that header and movetext
-      // will always have a blank line between them (ie, two newline_char's).
-      // With default newline_char, will equal: /^(\[((?:\r?\n)|.)*\])(?:\r?\n){2}/
+      // will always have a blank line between them (ie, two newlineChar's).
+      // With default newlineChar, will equal: /^(\[((?:\r?\n)|.)*\])(?:\r?\n){2}/
       var header_regex = new RegExp(
         '^(\\[((?:' +
-          mask(newline_char) +
+          mask(newlineChar) +
           ')|.)*\\])' +
           '(?:' +
-          mask(newline_char) +
+          mask(newlineChar) +
           '){2}'
       );
 
@@ -1561,7 +1561,7 @@ var Chess = function(fen) {
       /* delete header to get the moves */
       var ms = pgn
         .replace(header_string, '')
-        .replace(new RegExp(mask(newline_char), 'g'), ' ');
+        .replace(new RegExp(mask(newlineChar), 'g'), ' ');
 
       /* delete comments */
       ms = ms.replace(/(\{[^}]+\})+?/g, '');
