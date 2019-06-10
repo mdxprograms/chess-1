@@ -1,26 +1,27 @@
-# chess.js
+# @ninjapixel/chess
 
 [![Build Status](https://travis-ci.org/ninjaPixel/chess.svg?branch=master)](https://travis-ci.org/ninjaPixel/chess)
 
-chess.js is a Javascript chess library that is used for chess move
+A Javascript chess library used for chess move
 generation/validation, piece placement/movement, and check/checkmate/stalemate
-detection - basically everything but the AI.
+detection - basically everything but the AI. 
 
-chess.js has been extensively tested in node.js and most modern browsers.
+🍴 Forked from [chess.js](https://github.com/jhlywa/chess.js)
+
+This library has been extensively tested in node.js and most modern browsers.
 
 ## Installation
 
-To install the stable version:
+To install the latest stable version:
 
 ```sh
-npm install --save chess.js
+npm install --save @ninjapixel/chess
 ```
 
-chess.js is also available via [CDNJS](https://cdnjs.com/libraries/chess.js):
-
-```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
+```sh
+yarn add @ninjapixel/chess
 ```
+
 
 ## Example Code
 The code below plays a complete game of chess ... randomly.
@@ -37,31 +38,13 @@ while (!chess.game_over()) {
 console.log(chess.pgn());
 ```
 
-## Sites Using chess.js
-
-- [chess.com](http://www.chess.com/)
-- [The Internet Chess Club (ICC)](http://www.chessclub.com/)
-- [lichess](http://lichess.org/tv)
-- [Redbull - Battle for the Queen](http://battleforthequeen.redbull.com/)
-- [Asm.js Chess Battle](https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/chess/)
-- [3D Hartwig Chess](http://creativejs.com/2012/12/3d-hartwig-chess/)
-- [Scene VR](http://client.scenevr.com/?connect=chess.scenevr.hosting/chess.xml)
-- [Multiplayer Chess](http://chessapp.com/)
-- [Reti Chess](http://retichess.nodejitsu.com/)
-- [Chess Fork](http://www.chessfork.com/)
-- [Lozza](http://op12no2.me/posts/1641)
-- [angular-chess](http://theborakompanioni.github.io/angular-chess)
-- [Chessable](https://www.chessable.com)
-- [SlimChess](https://slimchess.com/now)
-
-Need a user interface?  Try Chris Oakman's excellent
-[chessboard.js](http://chessboardjs.com) library.  See
-[chessboard.js - Random vs Random](http://chessboardjs.com/examples#5002) for
-an example integration of chess.js with chessboard.js.
 
 ## API
 
-### Constructor: Chess([ fen ])
+* [Constructor](#constructor)
+* [.loadPgn](#loadPgn)
+
+### Constructor: Chess([ fen ]) {#constructor}
 The Chess() constructor takes an optional parameter which specifies the board configuration
 in [Forsyth-Edwards Notation](http://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation).
 
@@ -308,7 +291,7 @@ chess.load('4r3/8/X12XPk/1p6/pP2p1R1/P1B5/2P2K2/3r4 w - - 1 45');
 // -> false, bad piece X
 ```
 
-### .load_pgn(pgn, [ options ])
+### .loadPgn(pgn, [ options ]) {#load-pgn}
 Load the moves of a game stored in
 [Portable Game Notation](http://en.wikipedia.org/wiki/Portable_Game_Notation).
 `pgn` should be a string. Options is an optional `object` which may contain
