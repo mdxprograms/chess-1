@@ -43,6 +43,7 @@ console.log(chess.pgn());
 
 * [Constructor](#constructor-chess-fen)
 * [.loadPgn](#loadpgnpgn--options)
+* [test](#id-goes-here)
 
 ### Constructor: Chess([ fen ])
 The Chess() constructor takes an optional parameter which specifies the board configuration
@@ -601,20 +602,9 @@ chess.validate_fen('4r3/8/X12XPk/1p6/pP2p1R1/P1B5/2P2K2/3r4 w - - 1 45');
 //     error: '1st field (piece positions) is invalid [invalid piece].' }
 ```
 
-## MUSIC
-
-Musical support provided by:
-
-- [The Grateful Dead](https://www.youtube.com/watch?feature=player_detailpage&v=ANF6qanEB7s#t=2999)
-- [Umphrey's McGee](http://www.youtube.com/watch?v=jh-1fFWkSdw)
+## Markdown plus h2 with a custom ID ##         {#id-goes-here}
 
 ## BUGS
 
 - The en passant square and castling flags aren't adjusted when using the put/remove functions (workaround: use .load() instead)
 
-## TODO
-
-- Investigate the use of piece lists (this may shave a few cycles off
-  generate_moves() and attacked()).
-- Refactor API to use camelCase - yuck.
-- Add more robust FEN validation.
