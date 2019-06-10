@@ -357,7 +357,7 @@ pgn = ['[Event "Casual Game"]',
        'Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8',
        '23.Bd7+ Kf8 24.Bxe7# 1-0'];
 
-chess.load_pgn(pgn.join('\n'));
+chess.loadPgn(pgn.join('\n'));
 // -> true
 
 chess.fen();
@@ -517,7 +517,7 @@ chess.move('e5');
 chess.move('Nc3');
 chess.move('Nc6');
 
-chess.pgn({ max_width: 5, newlineChar: '<br />' });
+chess.pgn({ maxWidth: 5, newlineChar: '<br />' });
 // -> '[White "Plunky"]<br />[Black "Plinkie"]<br /><br />1. e4 e5<br />2. Nc3 Nc6'
 ```
 

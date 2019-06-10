@@ -1383,15 +1383,15 @@ var Chess = function(fen) {
 
     pgn: function(options) {
       /* using the specification from http://www.chessclub.com/help/PGN-spec
-       * example for html usage: .pgn({ max_width: 72, newlineChar: "<br />" })
+       * example for html usage: .pgn({ maxWidth: 72, newlineChar: "<br />" })
        */
       var newline =
         typeof options === 'object' && typeof options.newlineChar === 'string'
           ? options.newlineChar
           : '\n';
-      var max_width =
-        typeof options === 'object' && typeof options.max_width === 'number'
-          ? options.max_width
+      var maxWidth =
+        typeof options === 'object' && typeof options.maxWidth === 'number'
+          ? options.maxWidth
           : 0;
       var result = [];
       var header_exists = false;
@@ -1450,15 +1450,15 @@ var Chess = function(fen) {
       /* history should be back to what is was before we started generating PGN,
        * so join together moves
        */
-      if (max_width === 0) {
+      if (maxWidth === 0) {
         return result.join('') + moves.join(' ');
       }
 
-      /* wrap the PGN output at max_width */
+      /* wrap the PGN output at maxWidth */
       var current_width = 0;
       for (var i = 0; i < moves.length; i++) {
-        /* if the current move will push past max_width */
-        if (current_width + moves[i].length > max_width && i !== 0) {
+        /* if the current move will push past maxWidth */
+        if (current_width + moves[i].length > maxWidth && i !== 0) {
           /* don't end the line with whitespace */
           if (result[result.length - 1] === ' ') {
             result.pop();

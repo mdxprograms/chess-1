@@ -416,7 +416,7 @@ describe("PGN", function() {
              'Kg4', 'e5', 'h4', 'Bxh4', 'Kxh4', 'e6', 'c5', 'bxc5', 'bxc5', 'e7', 'c4',
              'bxc4', 'Kg4', 'e8=Q', 'Kf5', 'Qe5+', 'Kg4', 'Re4#'],
      header: ['White', 'Jeff Hlywa', 'Black', 'Steve Bragg', 'GreatestGameEverPlayed?', 'True'],
-     max_width:19,
+     maxWidth:19,
      newlineChar:"<br />",
      pgn: '[White "Jeff Hlywa"]<br />[Black "Steve Bragg"]<br />[GreatestGameEverPlayed? "True"]<br /><br />1. d4 d5 2. Nf3 Nc6<br />3. e3 e6 4. Bb5 g5<br />5. O-O Qf6<br />6. Nc3 Bd7<br />7. Bxc6 Bxc6<br />8. Re1 O-O-O<br />9. a4 Bb4 10. a5 b5<br />11. axb6 axb6<br />12. Ra8+ Kd7<br />13. Ne5+ Kd6<br />14. Rxd8+ Qxd8<br />15. Nxf7+ Ke7<br />16. Nxd5+ Qxd5<br />17. c3 Kxf7<br />18. Qf3+ Qxf3<br />19. gxf3 Bxf3<br />20. cxb4 e5<br />21. dxe5 Ke6<br />22. b3 Kxe5<br />23. Bb2+ Ke4<br />24. Bxh8 Nf6<br />25. Bxf6 h5<br />26. Bxg5 Bg2<br />27. Kxg2 Kf5<br />28. Bh4 Kg4<br />29. Bg3 Kf5<br />30. e4+ Kg4<br />31. e5 h4<br />32. Bxh4 Kxh4<br />33. e6 c5<br />34. bxc5 bxc5<br />35. e7 c4<br />36. bxc4 Kg4<br />37. e8=Q Kf5<br />38. Qe5+ Kg4<br />39. Re4#',
      fen: '8/8/8/4Q3/2P1R1k1/8/5PKP/8 b - - 4 39'},
@@ -430,17 +430,17 @@ describe("PGN", function() {
              'Qe4', 'Nf6', 'Rxf6', 'gxf6', 'Rxf6', 'Kg8', 'Bc4', 'Kh8', 'Qf4'],
      header: ["Event", "Reykjavik WCh", "Site", "Reykjavik WCh", "Date", "1972.01.07", "EventDate", "?", "Round", "6", "Result", "1-0",
             "White", "Robert James Fischer", "Black", "Boris Spassky", "ECO", "D59", "WhiteElo", "?", "BlackElo", "?", "PlyCount", "81"],
-     max_width:65,
+     maxWidth:65,
      pgn: '[Event "Reykjavik WCh"]\n[Site "Reykjavik WCh"]\n[Date "1972.01.07"]\n[EventDate "?"]\n[Round "6"]\n[Result "1-0"]\n[White "Robert James Fischer"]\n[Black "Boris Spassky"]\n[ECO "D59"]\n[WhiteElo "?"]\n[BlackElo "?"]\n[PlyCount "81"]\n\n1. c4 e6 2. Nf3 d5 3. d4 Nf6 4. Nc3 Be7 5. Bg5 O-O 6. e3 h6\n7. Bh4 b6 8. cxd5 Nxd5 9. Bxe7 Qxe7 10. Nxd5 exd5 11. Rc1 Be6\n12. Qa4 c5 13. Qa3 Rc8 14. Bb5 a6 15. dxc5 bxc5 16. O-O Ra7\n17. Be2 Nd7 18. Nd4 Qf8 19. Nxe6 fxe6 20. e4 d4 21. f4 Qe7\n22. e5 Rb8 23. Bc4 Kh8 24. Qh3 Nf8 25. b3 a5 26. f5 exf5\n27. Rxf5 Nh7 28. Rcf1 Qd8 29. Qg3 Re7 30. h4 Rbb7 31. e6 Rbc7\n32. Qe5 Qe8 33. a4 Qd8 34. R1f2 Qe8 35. R2f3 Qd8 36. Bd3 Qe8\n37. Qe4 Nf6 38. Rxf6 gxf6 39. Rxf6 Kg8 40. Bc4 Kh8 41. Qf4 1-0',
      fen: '4q2k/2r1r3/4PR1p/p1p5/P1Bp1Q1P/1P6/6P1/6K1 b - - 4 41'},
-    {moves: ['f3', 'e5', 'g4', 'Qh4#'],     // testing max_width being small and having no comments
+    {moves: ['f3', 'e5', 'g4', 'Qh4#'],     // testing maxWidth being small and having no comments
      header: [],
-     max_width:1,
+     maxWidth:1,
      pgn: '1. f3 e5\n2. g4 Qh4#',
      fen: 'rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3'},
     {moves: ['Ba5', 'O-O', 'd6', 'd4'],     // testing a non-starting position
      header: [],
-     max_width:20,
+     maxWidth:20,
      pgn: '[SetUp "1"]\n[FEN "r1bqk1nr/pppp1ppp/2n5/4p3/1bB1P3/2P2N2/P2P1PPP/RNBQK2R b KQkq - 0 1"]\n\n1. ... Ba5 2. O-O d6\n3. d4',
      starting_position: 'r1bqk1nr/pppp1ppp/2n5/4p3/1bB1P3/2P2N2/P2P1PPP/RNBQK2R b KQkq - 0 1',
      fen: 'r1bqk1nr/ppp2ppp/2np4/b3p3/2BPP3/2P2N2/P4PPP/RNBQ1RK1 b kq d3 0 3'}
@@ -460,7 +460,7 @@ describe("PGN", function() {
       }
 
       chess.header.apply(null, position.header);
-      var pgn = chess.pgn({max_width:position.max_width, newlineChar:position.newlineChar});
+      var pgn = chess.pgn({maxWidth:position.maxWidth, newlineChar:position.newlineChar});
       var fen = chess.fen();
       passed = pgn === position.pgn && fen === position.fen;
       assert(passed && error_message.length == 0);
@@ -764,7 +764,7 @@ describe("Load PGN", function() {
           if ('fen' in t) {
             assert(result && chess.fen() == t.fen);
           } else {
-            assert(result && chess.pgn({ max_width: 65, newlineChar: newline }) == t.pgn.join(newline));
+            assert(result && chess.pgn({ maxWidth: 65, newlineChar: newline }) == t.pgn.join(newline));
           }
 
         } else {
