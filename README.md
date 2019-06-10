@@ -168,15 +168,15 @@ Returns true if the game has ended via checkmate, stalemate, draw, threefold rep
 
 ```js
 var chess = new Chess();
-chess.game_over();
+chess.gameOver();
 // -> false
 
 chess.load('4k3/4P3/4K3/8/8/8/8/8 b - - 0 78');
-chess.game_over();
+chess.gameOver();
 // -> true (stalemate)
 
 chess.load('rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3');
-chess.game_over();
+chess.gameOver();
 // -> true (checkmate)
 ```
 
@@ -320,14 +320,14 @@ chess.load('4r3/8/X12XPk/1p6/pP2p1R1/P1B5/2P2K2/3r4 w - - 1 45');
 Load the moves of a game stored in
 [Portable Game Notation](http://en.wikipedia.org/wiki/Portable_Game_Notation).
 `pgn` should be a string. Options is an optional `object` which may contain
-a string `newline_char` and a boolean `sloppy`.
+a string `newlineChar` and a boolean `sloppy`.
 
-The `newline_char` is a string representation of a valid RegExp fragment and is
+The `newlineChar` is a string representation of a valid RegExp fragment and is
 used to process the PGN. It defaults to `\r?\n`. Special characters
 should not be pre-escaped, but any literal special characters should be escaped
 as is normal for a RegExp.  Keep in mind that backslashes in JavaScript strings
 must themselves be escaped (see `sloppy_pgn` example below). Avoid using
-a `newline_char` that may occur elsewhere in a PGN, such as `.` or `x`, as this
+a `newlineChar` that may occur elsewhere in a PGN, such as `.` or `x`, as this
 will result in unexpected behavior.
 
 The `sloppy` flag is a boolean that permits chess.js to parse moves in
@@ -396,7 +396,7 @@ var sloppy_pgn = ['[Event "Wijk aan Zee (Netherlands)"]',
 ].join('|');
 
 var options = {
-  newline_char: '\\|', // Literal '|' character escaped
+  newlineChar: '\\|', // Literal '|' character escaped
   sloppy: true
 };
 
@@ -517,7 +517,7 @@ chess.move('e5');
 chess.move('Nc3');
 chess.move('Nc6');
 
-chess.pgn({ max_width: 5, newline_char: '<br />' });
+chess.pgn({ max_width: 5, newlineChar: '<br />' });
 // -> '[White "Plunky"]<br />[Black "Plinkie"]<br /><br />1. e4 e5<br />2. Nc3 Nc6'
 ```
 

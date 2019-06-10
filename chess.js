@@ -1383,11 +1383,11 @@ var Chess = function(fen) {
 
     pgn: function(options) {
       /* using the specification from http://www.chessclub.com/help/PGN-spec
-       * example for html usage: .pgn({ max_width: 72, newline_char: "<br />" })
+       * example for html usage: .pgn({ max_width: 72, newlineChar: "<br />" })
        */
       var newline =
-        typeof options === 'object' && typeof options.newline_char === 'string'
-          ? options.newline_char
+        typeof options === 'object' && typeof options.newlineChar === 'string'
+          ? options.newlineChar
           : '\n';
       var max_width =
         typeof options === 'object' && typeof options.max_width === 'number'
@@ -1497,13 +1497,13 @@ var Chess = function(fen) {
       }
 
       function parsePgnHeader(header, options) {
-        var newline_char =
+        var newlineChar =
           typeof options === 'object' &&
-          typeof options.newline_char === 'string'
-            ? options.newline_char
+          typeof options.newlineChar === 'string'
+            ? options.newlineChar
             : '\r?\n';
         var header_obj = {};
-        var headers = header.split(new RegExp(mask(newline_char)));
+        var headers = header.split(new RegExp(mask(newlineChar)));
         var key = '';
         var value = '';
 
@@ -1518,20 +1518,20 @@ var Chess = function(fen) {
         return header_obj;
       }
 
-      var newline_char =
-        typeof options === 'object' && typeof options.newline_char === 'string'
-          ? options.newline_char
+      var newlineChar =
+        typeof options === 'object' && typeof options.newlineChar === 'string'
+          ? options.newlineChar
           : '\r?\n';
 
       // RegExp to split header. Takes advantage of the fact that header and movetext
-      // will always have a blank line between them (ie, two newline_char's).
-      // With default newline_char, will equal: /^(\[((?:\r?\n)|.)*\])(?:\r?\n){2}/
+      // will always have a blank line between them (ie, two newlineChar's).
+      // With default newlineChar, will equal: /^(\[((?:\r?\n)|.)*\])(?:\r?\n){2}/
       var header_regex = new RegExp(
         '^(\\[((?:' +
-          mask(newline_char) +
+          mask(newlineChar) +
           ')|.)*\\])' +
           '(?:' +
-          mask(newline_char) +
+          mask(newlineChar) +
           '){2}'
       );
 
@@ -1561,7 +1561,7 @@ var Chess = function(fen) {
       /* delete header to get the moves */
       var ms = pgn
         .replace(header_string, '')
-        .replace(new RegExp(mask(newline_char), 'g'), ' ');
+        .replace(new RegExp(mask(newlineChar), 'g'), ' ');
 
       /* delete comments */
       ms = ms.replace(/(\{[^}]+\})+?/g, '');

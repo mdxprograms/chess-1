@@ -417,7 +417,7 @@ describe("PGN", function() {
              'bxc4', 'Kg4', 'e8=Q', 'Kf5', 'Qe5+', 'Kg4', 'Re4#'],
      header: ['White', 'Jeff Hlywa', 'Black', 'Steve Bragg', 'GreatestGameEverPlayed?', 'True'],
      max_width:19,
-     newline_char:"<br />",
+     newlineChar:"<br />",
      pgn: '[White "Jeff Hlywa"]<br />[Black "Steve Bragg"]<br />[GreatestGameEverPlayed? "True"]<br /><br />1. d4 d5 2. Nf3 Nc6<br />3. e3 e6 4. Bb5 g5<br />5. O-O Qf6<br />6. Nc3 Bd7<br />7. Bxc6 Bxc6<br />8. Re1 O-O-O<br />9. a4 Bb4 10. a5 b5<br />11. axb6 axb6<br />12. Ra8+ Kd7<br />13. Ne5+ Kd6<br />14. Rxd8+ Qxd8<br />15. Nxf7+ Ke7<br />16. Nxd5+ Qxd5<br />17. c3 Kxf7<br />18. Qf3+ Qxf3<br />19. gxf3 Bxf3<br />20. cxb4 e5<br />21. dxe5 Ke6<br />22. b3 Kxe5<br />23. Bb2+ Ke4<br />24. Bxh8 Nf6<br />25. Bxf6 h5<br />26. Bxg5 Bg2<br />27. Kxg2 Kf5<br />28. Bh4 Kg4<br />29. Bg3 Kf5<br />30. e4+ Kg4<br />31. e5 h4<br />32. Bxh4 Kxh4<br />33. e6 c5<br />34. bxc5 bxc5<br />35. e7 c4<br />36. bxc4 Kg4<br />37. e8=Q Kf5<br />38. Qe5+ Kg4<br />39. Re4#',
      fen: '8/8/8/4Q3/2P1R1k1/8/5PKP/8 b - - 4 39'},
     {moves: ['c4', 'e6', 'Nf3', 'd5', 'd4', 'Nf6', 'Nc3', 'Be7', 'Bg5', 'O-O', 'e3', 'h6',
@@ -460,7 +460,7 @@ describe("PGN", function() {
       }
 
       chess.header.apply(null, position.header);
-      var pgn = chess.pgn({max_width:position.max_width, newline_char:position.newline_char});
+      var pgn = chess.pgn({max_width:position.max_width, newlineChar:position.newlineChar});
       var fen = chess.fen();
       passed = pgn === position.pgn && fen === position.fen;
       assert(passed && error_message.length == 0);
@@ -744,14 +744,14 @@ describe("Load PGN", function() {
     },
   ];
 
-  var newline_chars = ['\n', '<br />', '\r\n', 'BLAH'];
+  var newlineChars = ['\n', '<br />', '\r\n', 'BLAH'];
 
   tests.forEach(function(t, i) {
-    newline_chars.forEach(function(newline, j) {
+    newlineChars.forEach(function(newline, j) {
       it(i + String.fromCharCode(97 + j), function() {
         var sloppy = t.sloppy || false;
         var result = chess.loadPgn(t.pgn.join(newline), {sloppy: sloppy,
-                                                          newline_char: newline});
+                                                          newlineChar: newline});
         var should_pass = t.expect;
 
         /* some tests are expected to fail */
@@ -764,7 +764,7 @@ describe("Load PGN", function() {
           if ('fen' in t) {
             assert(result && chess.fen() == t.fen);
           } else {
-            assert(result && chess.pgn({ max_width: 65, newline_char: newline }) == t.pgn.join(newline));
+            assert(result && chess.pgn({ max_width: 65, newlineChar: newline }) == t.pgn.join(newline));
           }
 
         } else {
@@ -802,7 +802,7 @@ describe("Load PGN", function() {
          '32. Qe5 Qe8 33. a4 Qd8 34. R1f2 Qe8 35. R2f3 Qd8 36. Bd3 Qe8\n' +
          '37. Qe4 Nf6 38. Rxf6 gxf6 39. Rxf6 Kg8 40. Bc4 Kh8 41. Qf4 1-0\n';
 
-    var result = chess.loadPgn(pgn, { newline_char: '\r?\n' });
+    var result = chess.loadPgn(pgn, { newlineChar: '\r?\n' });
     assert(result);
 
     assert(chess.loadPgn(pgn));
