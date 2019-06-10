@@ -30,7 +30,7 @@ The code below plays a complete game of chess ... randomly.
 var Chess = require('./chess').Chess;
 var chess = new Chess();
 
-while (!chess.game_over()) {
+while (!chess.gameOver()) {
   var moves = chess.moves();
   var move = moves[Math.floor(Math.random() * moves.length)];
   chess.move(move);
@@ -576,11 +576,11 @@ Returns the color of the square ('light' or 'dark').
 
 ```js
 var chess = Chess();
-chess.square_color('h1')
+chess.squareColor('h1')
 // -> 'light'
-chess.square_color('a7')
+chess.squareColor('a7')
 // -> 'dark'
-chess.square_color('bogus square')
+chess.squareColor('bogus square')
 // -> null
 ```
 
@@ -619,10 +619,10 @@ FEN string.
 
 ```js
 chess.validateFen('2n1r3/p1k2pp1/B1p3b1/P7/5bP1/2N1B3/1P2KP2/2R5 b - - 4 25');
-// -> { valid: true, error_number: 0, error: 'No errors.' }
+// -> { valid: true, errorNumber: 0, error: 'No errors.' }
 
 chess.validateFen('4r3/8/X12XPk/1p6/pP2p1R1/P1B5/2P2K2/3r4 w - - 1 45');
-// -> { valid: false, error_number: 9,
+// -> { valid: false, errorNumber: 9,
 //     error: '1st field (piece positions) is invalid [invalid piece].' }
 ```
 
