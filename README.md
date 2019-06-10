@@ -326,7 +326,7 @@ The `newlineChar` is a string representation of a valid RegExp fragment and is
 used to process the PGN. It defaults to `\r?\n`. Special characters
 should not be pre-escaped, but any literal special characters should be escaped
 as is normal for a RegExp.  Keep in mind that backslashes in JavaScript strings
-must themselves be escaped (see `sloppy_pgn` example below). Avoid using
+must themselves be escaped (see `sloppyPgn` example below). Avoid using
 a `newlineChar` that may occur elsewhere in a PGN, such as `.` or `x`, as this
 will result in unexpected behavior.
 
@@ -378,7 +378,7 @@ chess.ascii();
 
 
 // Parse non-standard move formats and unusual line separators
-var sloppy_pgn = ['[Event "Wijk aan Zee (Netherlands)"]',
+var sloppyPgn = ['[Event "Wijk aan Zee (Netherlands)"]',
   '[Date "1971.01.26"]',
   '[Result "1-0"]',
   '[White "Tigran Vartanovich Petrosian"]',
@@ -400,10 +400,10 @@ var options = {
   sloppy: true
 };
 
-chess.loadPgn(sloppy_pgn);
+chess.loadPgn(sloppyPgn);
 // -> false
 
-chess.loadPgn(sloppy_pgn, options);
+chess.loadPgn(sloppyPgn, options);
 // -> true
 
 chess.fen();
