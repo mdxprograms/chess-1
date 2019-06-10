@@ -481,8 +481,15 @@ chess.moves({square: 'e9'}); // invalid square
 // -> []
 
 chess.moves({ verbose: true });
-// -> [{ color: 'w', from: 'a2', to: 'a3',
-//       flags: 'n', piece: 'p', san 'a3'
+// -> [{ 
+//       check: false,
+//       checkMate: false,
+//       color: 'w',
+//       from: 'a2',
+//       to: 'a3',
+//       flags: 'n',
+//       piece: 'p',
+//       san 'a3',
 //       # a captured: key is included when the move is a capture
 //       # a promotion: key is included when the move is a promotion
 //     },

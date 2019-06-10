@@ -1,6 +1,6 @@
 {
   "name": "@ninjapixel/chess",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A Javascript chess library for chess move generation/validation, piece placement/movement, and check/checkmate/draw detection",
   "author": "Matt Michel",
   "license": "BSD-2-Clause",
