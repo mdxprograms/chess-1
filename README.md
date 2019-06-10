@@ -41,10 +41,10 @@ console.log(chess.pgn());
 
 ## API
 
-* [Constructor](#constructor)
-* [.loadPgn](#loadPgn)
+* [Constructor](#constructor-chess-fen)
+* [.loadPgn](#loadpgnpgn--options)
 
-### Constructor: Chess([ fen ]) {#constructor}
+### Constructor: Chess([ fen ])
 The Chess() constructor takes an optional parameter which specifies the board configuration
 in [Forsyth-Edwards Notation](http://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation).
 
@@ -291,7 +291,7 @@ chess.load('4r3/8/X12XPk/1p6/pP2p1R1/P1B5/2P2K2/3r4 w - - 1 45');
 // -> false, bad piece X
 ```
 
-### .loadPgn(pgn, [ options ]) {#load-pgn}
+### .loadPgn(pgn, [ options ])
 Load the moves of a game stored in
 [Portable Game Notation](http://en.wikipedia.org/wiki/Portable_Game_Notation).
 `pgn` should be a string. Options is an optional `object` which may contain
