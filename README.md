@@ -41,9 +41,9 @@ console.log(chess.pgn());
 
 ## API
 
-* [Constructor](#constructor-chess-fen)
-* [.loadPgn](#loadpgnpgn--options)
-* [test](#id-goes-here)
+* [Constructor](#constructor-chess-fen-)
+* [.loadPgn](#loadpgnpgn--options-)
+
 
 ### Constructor: Chess([ fen ])
 The Chess() constructor takes an optional parameter which specifies the board configuration
@@ -602,7 +602,7 @@ chess.validate_fen('4r3/8/X12XPk/1p6/pP2p1R1/P1B5/2P2K2/3r4 w - - 1 45');
 //     error: '1st field (piece positions) is invalid [invalid piece].' }
 ```
 
-## Markdown plus h2 with a custom ID ##         {#id-goes-here}
+
 
 ## BUGS
 
